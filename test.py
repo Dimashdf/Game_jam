@@ -1,11 +1,18 @@
 import pygame
 from random import randint as ri
+import sys
+from pygame import draw
 
-time = pygame.time.Clock()
+
+
 pygame.init()
+time = pygame.time.Clock()
 screen = pygame.display.set_mode((800, 400)) 
 pygame.display.set_caption("Моя первая игра")
 icon = pygame.image.load('images/icon.png')
+fon = pygame.image.load('Image/fon.png')
+fon = pygame.transform.scale(fon, (960, 600))
+arial_50 = pygame.font.SysFont('arial', 50)
 
 
 
@@ -165,10 +172,66 @@ heart_anim_count = 0
 
 
 
-pygame.display.set_icon(icon)
 
-running = True
-while   running:
+pygame.display.set_icon(icon)
+class Menu:
+    def __init__(self):
+        self.option_surfaces = []
+        self.callbacks = []
+        self.current_option_index = 0
+
+    def append_option(self, option, callback):
+        self.option_surfaces.append(arial_50.render(option, True, (0, 0, 0)))
+        self.callbacks.append(callback)
+
+    def switch(self, direction):
+        self.current_option_index = max(0, min(self.current_option_index + direction, len(self.option_surfaces) - 1))
+
+    def select(self):
+        self.callbacks[self.current_option_index]()
+
+    def draw(self, surf, x, y, option_y):
+        for i, option in enumerate(self.option_surfaces):
+            option_rect = option.get_rect()
+            option_rect.topleft = (x, y + i * option_y)
+            if i == self.current_option_index:
+                draw.rect(surf, (0, 100, 0), option_rect)
+            surf.blit(option, option_rect)
+menu = Menu()
+menu.append_option("Play game", lambda: start_game())
+menu.append_option('Quit', quit)
+# Initialize the menu
+# Initialize game variables
+running = False
+
+# Add your game setup code here
+
+# Function to start the game
+
+def start_game():
+    global running
+    running = True
+
+# Main game loop
+while not running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                menu.switch(-1)
+            elif event.key == pygame.K_s:
+                menu.switch(1)
+            elif event.key == pygame.K_SPACE:
+                menu.select()
+
+    screen.fill((0, 0, 0))
+    screen.blit(fon, (0, 0))
+    menu.draw(screen, 100, 75, 100)
+    pygame.display.flip()
+
+while  running:
     labal_life = labal_font.render(str(player_life), False, (193, 196, 199))
     labal_points = labal_font.render(str(points) + '(30)', False, (193, 196, 199))
 
@@ -206,6 +269,8 @@ while   running:
     if player_life <= 0:
         screen.blit(bg_lose, (0, 0))
         screen.blit(labal_lose, (200, 200))
+        
+        running = False
 
     player_rect = player.get_rect(topleft=(player_x, player_y))
 
