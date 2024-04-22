@@ -1,0 +1,62 @@
+
+Marathon Runner Game Documentation
+
+Overview
+Marathon Runner is a 2D side-scrolling game where players take on the role of a character striving to survive in a world filled with obstacles. Developed in Python and utilizing the Pygame library, players must deftly navigate their avatar, collect points, and avoid being overtaken by a rival runner, all while facing off against menacing foes.
+
+Installation
+To play Marathon Runner, ensure that Python and Pygame are installed on your system. Follow these steps to get the game up and running:
+
+1. Install Python: Download and install Python from the official Python website (https://www.python.org/downloads/).
+
+2. Install Pygame: Execute the following command in your terminal or command prompt:
+
+pip install pygame
+
+3. Download the Game: Acquire the game by downloading MarathonRunner.zip, then extract its contents to a directory of your choosing.
+
+4. Run the Game: Within the game directory, execute the game via terminal or command prompt:
+
+python marathon_runner.py
+
+Controls
+Move Left: Press the Left Arrow or 'A' key.
+Move Right: Press the Right Arrow or 'D' key.
+Jump: Hit the Spacebar.
+Shoot: Press the 'E' key to launch fireballs at enemies.
+
+How to Play
+Avoid zombies and fiery obstacles using the game controls.
+Collect coins to earn points, aiming to achieve a minimum score of 30.
+The player starts with 3 lives, depicted by hearts on the screen's upper edge.
+The game concludes if the persistent runner catches up or if all lives are lost.
+
+Game Mechanics
+The game adopts an infinite runner style with randomly generated obstacles.
+Zombies appear sporadically, advancing toward the player.
+Fire hazards spawn in random positions but remain static.
+Coins must be gathered by making contact with them as they materialize in various positions.
+
+Scoring
+Accumulate points by collecting coins, with each coin contributing one point to the overall score.
+While avoiding coins does not deduct points, part of the challenge is to collect as many as possible.
+
+Graphics
+Characters, obstacles, and the environment are represented through pixel art.
+Character and obstacle sprites feature animations.
+
+Sounds
+The background track "b6c47dcdd5bd8ea" sets the mood with continuous play.
+Sound effects include actions such as jumping, firing projectiles, coin collection, and losing a life.
+
+Ending the Game
+You can exit the game anytime by closing the window.
+The game automatically ends if the player loses all lives or is caught by the rival runner.
+
+Credits
+Game Design and Development: Tomiris and Bexultan
+Graphics: Dinmukhamed, Ersultan
+Music and Sound Effects: [the music is not origina(b6c47dcdd5bd8ea.mp3)]
+
+License
+Marathon Runner is provided under the MIT License (https://opensource.org/licenses/MIT). Details can be found in the LICENSE file included with the game.
